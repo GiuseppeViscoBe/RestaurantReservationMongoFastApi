@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from app.models.item import ItemCreate, ItemUpdate
-from app.crud.item import ItemCRUD
+from app.models.item_model import ItemCreate, ItemUpdate
+from app.crud.item_crud import ItemCRUD
 from fastapi import Request
 
 router = APIRouter(prefix="/items", tags=["items"])

@@ -1,5 +1,5 @@
 from pydantic import EmailStr
-from app.models.user import UserCreate, UserUpdate
+from app.models.user_model import UserCreate, UserUpdate
 from bson import ObjectId
 from fastapi import HTTPException
 
@@ -22,13 +22,13 @@ class UserCRUD:
         data["_id"] = str(result.inserted_id)
         return data
 
-    async def list(db, limit: int = 10, skip: int = 0):
-        users_cursor = db["users"].find().skip(skip).limit(limit)
+    async def list(self, limit: int = 10, skip: int = 0):
+        users_cursor = self.collection.find().skip(skip).limit(limit)
         users = [dict(u, _id=str(u["_id"])) async for u in users_cursor]
         return users
 
 
-    async def get(self, user_email: EmailStr):
+    async def read(self, user_email: EmailStr):
         user = await self.collection.find_one({"email": user_email})
         if not user:
             raise HTTPException(status_code=404, detail="User not found")

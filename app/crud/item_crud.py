@@ -1,4 +1,4 @@
-from app.models.item import ItemCreate, ItemUpdate
+from app.models.item_model import ItemCreate, ItemUpdate
 from bson import ObjectId
 from fastapi import HTTPException
 

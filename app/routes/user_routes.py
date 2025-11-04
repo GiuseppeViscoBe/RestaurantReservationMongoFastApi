@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from pydantic import EmailStr
-from app.models.user import UserCreate, UserUpdate
+from app.models.user_model import UserCreate, UserUpdate
 from app.crud.user_crud import UserCRUD
 from fastapi import Request
 
@@ -20,7 +20,7 @@ async def list_users(crud: UserCRUD = Depends(get_user_crud)):
 
 @router.get("/{user_email}", response_model=dict)
 async def get_user_by_email(user_email: EmailStr, crud: UserCRUD = Depends(get_user_crud)):
-    return await crud.get(user_email)
+    return await crud.read(user_email)
 
 @router.put("/{user_email}", response_model=dict)
 async def update_item(user_email: str, user: UserUpdate, crud: UserCRUD = Depends(get_user_crud)):
