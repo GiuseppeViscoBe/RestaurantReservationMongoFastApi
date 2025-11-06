@@ -35,7 +35,7 @@ class UserCRUD:
         user["_id"] = str(user["_id"])
         return user
 
-    async def update(self, user_email: str, user: UserUpdate):
+    async def update(self, user_email: EmailStr, user: UserUpdate):
         update_data = {k: v for k, v in user.model_dump().items() if v is not None}
         if not update_data:
             raise HTTPException(status_code=400, detail="No data to update")

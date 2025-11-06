@@ -23,9 +23,9 @@ async def get_user_by_email(user_email: EmailStr, crud: UserCRUD = Depends(get_u
     return await crud.read(user_email)
 
 @router.put("/{user_email}", response_model=dict)
-async def update_item(user_email: str, user: UserUpdate, crud: UserCRUD = Depends(get_user_crud)):
+async def update_user(user_email: str, user: UserUpdate, crud: UserCRUD = Depends(get_user_crud)):
     return await crud.update(user_email, user)
 
 @router.delete("/{user_email}")
-async def delete_item(user_email: str, crud: UserCRUD = Depends(get_user_crud)):
+async def delete_user(user_email: str, crud: UserCRUD = Depends(get_user_crud)):
     return await crud.delete(user_email)
